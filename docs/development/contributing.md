@@ -1,9 +1,9 @@
-# Contribuição
+# Contribution
 
-Contribuições são bem-vindas. Os detalhes do processo ficam no repositório oficial.
+Contributions are welcome. Details of the process are available in the official repository.
 
-## Atualizando a documentação
+## Updating the documentation
 
-- Crie ou edite um arquivo `.md` em `docs/`.
-- Registre a página em `data/docs-index.json`. A busca e a navegação usam esse índice.
-- Teste localmente com `python -m http.server`.
+- Create or edit a `.md` file in `docs/`.
+- Register the page in `data/docs-index.json`. Search and navigation use this index.
+- Test locally with `python -m http.server`.

@@ -35,7 +35,7 @@ export function md(t) {
       const id = slug(h[2]);
       const n = h[1].length;
       if (n > 1) toc.push([id, h[2]]);
-      o.push(`<h${n} id="${id}">${inl(h[2])}${n > 1 ? `<a class=hl href="#" data-a="${id}" aria-label="Link direto">#</a>` : ''}</h${n}>`);
+      o.push(`<h${n} id="${id}">${inl(h[2])}${n > 1 ? `<a class=hl href="#" data-a="${id}" aria-label="Direct link">#</a>` : ''}</h${n}>`);
       i++;
       continue;
     }
@@ -45,7 +45,7 @@ export function md(t) {
       while (i < L.length && L[i].startsWith('>')) {
         q.push(L[i++].slice(1).trim());
       }
-      o.push(`<blockquote${/^\*\*(Aviso|Planejado)/.test(q[0]) ? ' class=warn' : ''}>${inl(q.join(' '))}</blockquote>`);
+      o.push(`<blockquote${/^\*\*(Warning|Planned)/.test(q[0]) ? ' class=warn' : ''}>${inl(q.join(' '))}</blockquote>`);
       continue;
     }
 
