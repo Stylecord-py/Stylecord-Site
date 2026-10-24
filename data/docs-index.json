@@ -1,6 +1,34 @@
-{"pages":[
-{"path":"index","title":"Visão geral","section":"Introdução"},
-{"path":"getting-started/install","title":"Instalação","section":"Começando"},
-{"path":"getting-started/first-bot","title":"Primeiro bot","section":"Começando"},
-{"path":"api/overview","title":"Referência da API","section":"API"},
-{"path":"development/contributing","title":"Contribuição","section":"Desenvolvimento"}]}
+{
+    "pages": 
+    [
+        {
+            "path":"index",
+            "title":"Visão geral",
+            "section":"Introdução"
+        },
+        
+        {
+            "path":"getting-started/install",
+            "title":"Instalação",
+            "section":"Começando"
+        },
+
+        
+        {
+            "path":"getting-started/first-bot",
+            "title":"Primeiro bot",
+            "section":"Começando"
+        },
+        
+        {
+            "path":"api/overview",
+            "title":"Referência da API",
+            "section":"API"},
+        
+        {
+            "path":"development/contributing",
+            "title":"Contribuição",
+            "section":"Desenvolvimento"
+        }
+    ]
+}

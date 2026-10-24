@@ -1,11 +1,111 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Stylecord.py — bots de Discord em Python</title><meta name="description" content="Biblioteca Python moderna para desenvolver bots Discord com mais agilidade e código organizado."><meta property="og:title" content="Stylecord.py"><meta property="og:description" content="Desenvolva mais. Simplifique tudo."><meta property="og:image" content="assets/images/banner.png"><link rel="icon" href="assets/images/logo.svg"><link rel="stylesheet" href="css/base.css"></head><body>
-<header class="top"><div class="wrap"><a class="logo" href="index.html"><img src="assets/images/logo.svg" alt="">stylecord<b>.py</b></a><button id="menu" aria-label="Abrir menu" aria-expanded="false">☰</button><nav class="main" aria-label="Principal"><a href="index.html" aria-current="page">Início</a><a href="docs/">Documentação</a><a href="docs/#/getting-started/first-bot">Guias</a><a href="docs/#/api/overview">API</a><a href="https://github.com/" rel="noopener">GitHub</a><a class="btn p" href="docs/#/getting-started/install">Começar</a></nav></div></header>
-<main class="wrap"><section class="hero"><div><h1>Desenvolva mais. Simplifique tudo.</h1><p class="lead">Uma biblioteca Python moderna para desenvolver bots Discord com mais agilidade, código organizado e uma experiência de desenvolvimento simples e flexível.</p><div class="cta"><a class="btn p" href="docs/#/getting-started/install">Começar agora</a><a class="btn" href="docs/">Explorar documentação</a></div></div>
-<div class="code"><div class="bar"><span>bot.py · demonstração conceitual</span></div><pre><code><span class=c># não é a API final</span>
-<span class=k>import</span> stylecord
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Stylecord.py — bots de Discord em Python</title>
+    <meta name="description" content="Biblioteca Python moderna para desenvolver bots Discord com mais agilidade e código organizado.">
+    <meta property="og:title" content="Stylecord.py">
+    <meta property="og:description" content="Desenvolva mais. Simplifique tudo.">
+    <meta property="og:image" content="assets/images/banner.png">
+    <link rel="icon" href="assets/images/stylecord-logo.png">
+    <link rel="stylesheet" href="css/base.css">
+  </head>
+  <body>
+    <header class="top">
+      <div class="wrap">
+        <a class="logo" href="index.html">
+          <img src="assets/images/stylecord-logo.png" alt="">stylecord<b>.py</b>
+        </a>
+        <button id="menu" aria-label="Abrir menu" aria-expanded="false">☰</button>
+        <nav class="main" aria-label="Principal">
+          <a href="index.html" aria-current="page">Início</a>
+          <a href="docs/">Documentação</a>
+          <a href="docs/#/getting-started/first-bot">Guias</a>
+          <a href="docs/#/api/overview">API</a>
+          <a href="https://github.com/" rel="noopener">GitHub</a>
+          <a class="btn p" href="docs/#/getting-started/install">Começar</a>
+        </nav>
+      </div>
+    </header>
 
-bot = stylecord.Bot(token=<span class=s>"..."</span>)
-bot.run()</code></pre></div></section>
-<section class="sec"><h2>Princípios</h2><div class="pillars"><div><h3>Rapidez</h3><p>Menos complexidade para implementar funcionalidades.</p></div><div><h3>Modernidade</h3><p>API organizada, alinhada às práticas atuais de Python.</p></div><div><h3>Simplicidade</h3><p>Código intuitivo e estrutura clara.</p></div><div><h3>Flexibilidade</h3><p>Base para diferentes tipos de bots e projetos.</p></div></div></section>
-<section class="sec"><h2>Início rápido</h2><ol class="steps"><li>Instale a biblioteca.</li><li>Configure seu projeto.</li><li>Crie e execute seu primeiro bot.</li></ol><p class="note">Os comandos exatos dependem de onde o pacote é distribuído. Veja o <a href="docs/#/getting-started/install">guia de instalação</a>.</p></section></main>
-<footer><div class="wrap"><div><b>stylecord.py</b><br>Licença: a definir no repositório.</div><div><a href="docs/">Documentação</a> · <a href="docs/#/development/contributing">Contribuir</a> · <a href="https://github.com/" rel="noopener">GitHub</a></div></div></footer><script src="js/app.js"></script></body></html>
+    <main class="wrap">
+      <section class="hero">
+        <div>
+          <h1>Desenvolva mais. Simplifique tudo.</h1>
+          <p class="lead">Uma biblioteca Python moderna para desenvolver bots Discord com mais agilidade, código organizado e uma experiência de desenvolvimento simples e flexível.</p>
+          <div class="cta">
+            <a class="btn p" href="docs/#/getting-started/install">Começar agora</a>
+            <a class="btn" href="docs/">Explorar documentação</a>
+            <a class="btn btn-square" href="https://discord.gg/SnvHx6hJf" target="_blank" rel="noopener noreferrer">
+              <img src="assets/images/discord-white-icon.png" alt="Discord" class="btn-logo">
+              <span class="tooltip">Join our Discord server.</span>
+            </a>
+            <a class="btn btn-square" href="https://www.github.com/Stylecord-py" target="_blank" rel="noopener noreferrer">
+              <img src="assets/images/github-white-icon.png" alt="Github" class="btn-logo">
+              <span class="tooltip">Organization on GitHub</span>
+            </a>
+          </div>
+        </div>
+        <div class="code">
+          <div class="bar">
+            <span>bot.py · demonstração conceitual</span>
+            <button class="copy">Copiar</button>
+          </div>
+            <pre><code><span class="k">import</span> stylecord
+<span class="k">from</span> stylecord.ext <span class="k">import</span> commands <span class="c"># ext -> extensions</span>
+
+intents = stylecord.<span class="f">Intents</span>()
+bot = commands.<span class="f">Bot</span>(intents=intents)
+
+<span class="d">@bot.event</span>
+<span class="k">async def</span> <span class="f">on_ready</span>():
+    <span class="f">print</span>(<span class="s">f"Bot</span> {bot.user.tag} <span class="s">logado com êxito!"</span>)
+
+bot.<span class="f">run</span>(<span class="s">"&lt;you token here&gt;"</span>)</code></pre>
+</div>
+      </section>
+
+      <section class="sec">
+        <h2>Princípios</h2>
+        <div class="pillars">
+          <div>
+            <h3>Rapidez</h3>
+            <p>Menos complexidade para implementar funcionalidades.</p>
+          </div>
+          <div>
+            <h3>Modernidade</h3>
+            <p>API organizada, alinhada às práticas atuais de Python.</p>
+          </div>
+          <div>
+            <h3>Simplicidade</h3>
+            <p>Código intuitivo e estrutura clara.</p>
+          </div>
+          <div>
+            <h3>Flexibilidade</h3>
+            <p>Base para diferentes tipos de bots e projetos.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec">
+        <h2>Início rápido</h2>
+        <ol class="steps">
+          <li>Instale a biblioteca.</li>
+          <li>Configure seu projeto.</li>
+          <li>Crie e execute seu primeiro bot.</li>
+        </ol>
+        <p class="note">Os comandos exatos dependem de onde o pacote é distribuído. Veja o <a href="docs/#/getting-started/install">guia de instalação</a>.</p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <div><b>stylecord.py</b><br><a href="https://raw.githubusercontent.com/Stylecord-py/Stylecord.py/refs/heads/main/license">Licença: GNU.<a></div>
+        <div><a href="docs/">Documentação</a> · <a href="docs/#/development/contributing">Contribuir</a> · <a href="https://github.com/Stylecord-py/Stylecord.py" rel="noopener">GitHub</a></div>
+      </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
