@@ -14,13 +14,13 @@ async function load() {
   $('#side').querySelectorAll('a[data-p]').forEach(a => a.toggleAttribute('aria-current', a.dataset.p === p));
 
   if (i < 0) {
-    $('#art').innerHTML = '<h1>Página não encontrada</h1><p>Esse documento não existe. Use a busca ou volte ao <a href="#/index">início da documentação</a>.</p>';
+    $('#art').innerHTML = '<h1>Page not found</h1><p>This document does not exist. Use the search or return to the <a href="#/index">documentation home</a>.</p>';
     return;
   }
 
   const r = await fetch(p + '.md');
   if (!r.ok) {
-    $('#art').innerHTML = '<h1>Erro ao carregar</h1><p>Não foi possível ler este arquivo. Recarregue a página.</p>';
+    $('#art').innerHTML = '<h1>Error loading</h1><p>Could not read this file. Please reload the page.</p>';
     return;
   }
 
@@ -52,7 +52,7 @@ $('#nav').innerHTML = items.map(x => {
 
 $('#q').addEventListener('input', async e => {
   const r = await search(e.target.value, items);
-  $('#res').innerHTML = e.target.value.trim() ? (r.length ? r.map(x => `<a href="#/${x.path}"><b>${x.title}</b><br><small>${x.section}</small></a>`).join('') : '<small>Nenhum resultado.</small>') : '';
+  $('#res').innerHTML = e.target.value.trim() ? (r.length ? r.map(x => `<a href="#/${x.path}"><b>${x.title}</b><br><small>${x.section}</small></a>`).join('') : '<small>No results.</small>') : '';
 });
 
 $('#sb').onclick = () => $('#side').classList.toggle('open');

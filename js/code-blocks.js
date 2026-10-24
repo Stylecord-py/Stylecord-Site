@@ -7,21 +7,23 @@ export function highlight(s) {
 }
 
 export function wire(root = document) {
-  root.querySelectorAll('.copy').forEach(b => b.onclick = async () => {
-    try {
-      await navigator.clipboard.writeText(b.closest('.code').querySelector('code').innerText);
-      b.textContent = 'Copiado!';
-      b.classList.add('ok');
-    } catch {
-      b.textContent = 'Falhou';
-    }
-    setTimeout(() => {
-      b.textContent = 'Copiar';
-      b.classList.remove('ok');
-    }, 1500);
+  root.querySelectorAll('.copy').forEach(b => {
+    b.onclick = async () => {
+      try {
+        await navigator.clipboard.writeText(b.closest('.code').querySelector('pre').innerText);
+        b.textContent = 'Copied!';
+        b.classList.add('ok');
+      } catch {
+        b.textContent = 'Failed';
+      }
+      setTimeout(() => {
+        b.textContent = 'Copy';
+        b.classList.remove('ok');
+      }, 1500);
+    };
   });
 }
 
 export function block(code, file) {
-  return `<div class=code><div class=bar><span>${file || 'python'}</span><button class=copy type=button>Copiar</button></div><pre><code>${highlight(code)}</code></pre></div>`;
+  return `<div class=code><div class=bar><span>${file || 'python'}</span><button class=copy type=button>Copy</button></div><pre><code>${highlight(code)}</code></pre></div>`;
 }

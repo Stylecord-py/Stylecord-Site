@@ -1,14 +1,172 @@
-.dl{display:grid;grid-template-columns:250px minmax(0,1fr) 190px;gap:32px;max-width:1280px;margin:0 auto;padding:0 20px}
-#side{position:sticky;top:56px;align-self:start;max-height:calc(100vh - 56px);overflow:auto;padding:20px 0}
-#side h4{margin:18px 0 6px;color:var(--g);font-size:.8rem}#side a{display:block;padding:5px 10px;color:#d4d4d8;text-decoration:none;border-left:2px solid transparent;font-size:.92rem}
-#side a[aria-current]{color:var(--y);border-color:var(--y);background:#ffd43b0f}
-#q{width:100%;padding:10px;background:var(--sf);border:1px solid var(--line);border-radius:8px;color:#fff;font-size:1rem}
-#res a{border:0;padding:6px 4px}#res small{color:var(--g)}
-article{padding:28px 0 60px;min-width:0;max-width:78ch}article h1{font-size:2.2rem}article h2{margin-top:36px;font-size:1.5rem}
-article code{background:#ffffff14;padding:1px 5px;border-radius:4px;font-size:.9em}article pre code{background:0;padding:0}
-article .code{margin:18px 0}article blockquote{margin:18px 0;border-left:3px solid var(--b);background:#3776ab1a;padding:8px 14px;border-radius:0 8px 8px 0}
-article blockquote.warn{border-color:var(--y);background:#ffd43b12}
-.crumb{color:var(--g);font-size:.85rem}.pn{display:flex;justify-content:space-between;gap:12px;margin-top:48px}.pn a{border:1px solid var(--line);border-radius:8px;padding:10px 14px;text-decoration:none;flex:1}
-#toc{position:sticky;top:76px;align-self:start;padding-top:28px;font-size:.85rem}#toc a{display:block;color:var(--g);text-decoration:none;padding:3px 0}#toc a:hover{color:#fff}
-.hl{color:var(--y);text-decoration:none;opacity:0;margin-left:6px}h2:hover .hl,h3:hover .hl{opacity:1}
-@media(max-width:1000px){.dl{grid-template-columns:1fr}#toc{display:none}#side{display:none;position:static;max-height:none}#side.open{display:block}}
+.dl {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr) 190px;
+  gap: 32px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+#side {
+  position: sticky;
+  top: 56px;
+  align-self: start;
+  max-height: calc(100vh - 56px);
+  overflow: auto;
+  padding: 20px 0;
+}
+
+#side h4 {
+  margin: 18px 0 6px;
+  color: var(--g);
+  font-size: .8rem;
+}
+
+#side a {
+  display: block;
+  padding: 5px 10px;
+  color: #d4d4d8;
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  font-size: .92rem;
+}
+
+#side a[aria-current] {
+  color: var(--y);
+  border-color: var(--y);
+  background: #ffd43b0f;
+}
+
+#q {
+  width: 100%;
+  padding: 10px;
+  background: var(--sf);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+}
+
+#res a {
+  border: 0;
+  padding: 6px 4px;
+}
+
+#res small {
+  color: var(--g);
+}
+
+article {
+  padding: 28px 0 60px;
+  min-width: 0;
+  max-width: 78ch;
+}
+
+article h1 {
+  font-size: 2.2rem;
+}
+
+article h2 {
+  margin-top: 36px;
+  font-size: 1.5rem;
+}
+
+article code {
+  background: #ffffff14;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: .9em;
+}
+
+article pre code {
+  background: 0;
+  padding: 0;
+}
+
+article .code {
+  margin: 18px 0;
+}
+
+article blockquote {
+  margin: 18px 0;
+  border-left: 3px solid var(--b);
+  background: #3776ab1a;
+  padding: 8px 14px;
+  border-radius: 0 8px 8px 0;
+}
+
+article blockquote.warn {
+  border-color: var(--y);
+  background: #ffd43b12;
+}
+
+.crumb {
+  color: var(--g);
+  font-size: .85rem;
+}
+
+.pn {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 48px;
+}
+
+.pn a {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 14px;
+  text-decoration: none;
+  flex: 1;
+}
+
+#toc {
+  position: sticky;
+  top: 76px;
+  align-self: start;
+  padding-top: 28px;
+  font-size: .85rem;
+}
+
+#toc a {
+  display: block;
+  color: var(--g);
+  text-decoration: none;
+  padding: 3px 0;
+}
+
+#toc a:hover {
+  color: #fff;
+}
+
+.hl {
+  color: var(--y);
+  text-decoration: none;
+  opacity: 0;
+  margin-left: 6px;
+}
+
+h2:hover .hl,
+h3:hover .hl {
+  opacity: 1;
+}
+
+@media (max-width: 1000px) {
+  .dl {
+    grid-template-columns: 1fr;
+  }
+  
+  #toc {
+    display: none;
+  }
+  
+  #side {
+    display: none;
+    position: static;
+    max-height: none;
+  }
+  
+  #side.open {
+    display: block;
+  }
+}

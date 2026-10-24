@@ -133,46 +133,38 @@ nav.main a.btn.p,
 }
 
 .btn-square {
-  width: 44px;          /* Largura igual à altura mínima para ser perfeitamente quadrado */
-  padding: 0;           /* Remove o padding padrão */
-  display: inline-flex; /* Alinha a logo perfeitamente no centro */
+  width: 44px;
+  padding: 0;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  position: relative;   /* Necessário para posicionar o balão de descrição */
+  position: relative;
 }
 
-/* Se quiser ele ainda menor (ex: 36px), force a altura e largura: */
-/*
-.btn-square.sm {
-  width: 36px;
-  height: 36px;
-  min-height: 36px;
-}
-*/
 .btn-square .btn-logo {
-  width: 18px;         /* Limita a largura da imagem */
-  height: 18px;        /* Limita a altura da imagem */
-  object-fit: contain; /* Garante que a logo não distorça se não for perfeitamente quadrada */
-  pointer-events: none;/* Evita bug no hover se o mouse passar direto na imagem */
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  pointer-events: none;
 }
 
 .btn-square .tooltip {
   position: absolute;
-  bottom: 125%;        /* Joga o balão para cima do botão */
+  bottom: 125%;
   left: 50%;
-  transform: translateX(-50%) scale(0.9); /* Centraliza e encolhe levemente para a animação */
-  background: #1e1e20; /* Cor de fundo do balão (pode usar var(--line) se preferir) */
+  transform: translateX(-50%) scale(0.9);
+  background: #1e1e20;
   color: #fff;
   padding: 6px 10px;
   border-radius: 4px;
   font-size: 12px;
   font-weight: 500;
-  white-space: nowrap; /* Evita que o texto quebre em duas linhas */
-  opacity: 0;          /* Invisível por padrão */
-  pointer-events: none;/* Evita que o mouse interaja com o balão invisível */
-  transition: opacity 0.15s ease, transform 0.15s ease; /* Animação suave */
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
   border: 1px solid var(--line);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .btn-square .tooltip::after {
@@ -188,7 +180,7 @@ nav.main a.btn.p,
 
 .btn-square:hover .tooltip {
   opacity: 1;
-  transform: translateX(-50%) scale(1); /* Exibe e volta ao tamanho normal */
+  transform: translateX(-50%) scale(1);
 }
 
 #menu {
@@ -237,7 +229,7 @@ h1 {
   flex-basis: 100%;
   width: 0;
   height: 0;
-  order: 1; /* Garante que a quebra fique depois dos dois botões principais */
+  order: 1;
 }
 
 .cta .btn-square {
@@ -247,9 +239,8 @@ h1 {
   align-items: center;
   justify-content: center;
   position: relative;
-  
-  order: 2;         /* Posiciona o botão logo após a quebra invisível */
-  margin-top: 8px;  /* Espaçamento em relação aos botões de cima */
+  order: 2;
+  margin-top: 8px;
 }
 
 /* Code Block */
@@ -295,13 +286,27 @@ h1 {
   border-color: var(--y);
 }
 
-.k { color: #6fa8dc; }
-.s { color: var(--y); }
-.c { color: #71717a; font-style: italic; }
-/*.d { color: #f1c232; font-weight: bold; }  /* Opção 1: Amarelo Dourado (Recomendado) */
-/*.d { color: #93c47d; font-weight: bold; } */ /* Opção 2: Verde Oliva Suave */
-.d { color: #b4a7d6; font-weight: bold; } /* Opção 3: Roxo Lavanda */
-.f { color: #8e7cc3; }
+.k {
+  color: #6fa8dc;
+}
+
+.s {
+  color: var(--y);
+}
+
+.c {
+  color: #71717a;
+  font-style: italic;
+}
+
+.d {
+  color: #b4a7d6;
+  font-weight: bold;
+}
+
+.f {
+  color: #8e7cc3;
+}
 
 /* Sections & Components */
 section.sec {
