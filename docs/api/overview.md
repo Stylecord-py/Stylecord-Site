@@ -1,15 +1,15 @@
-# Referência da API
+# API Reference
 
-> **Planejado:** a referência estável ainda não foi escrita. Cada elemento público deve seguir este modelo.
+> **Planned:** The stable reference has not yet been written. Every public element should follow this model.
 
-## Modelo de entrada
+## Input Model
 
-- Nome e descrição
-- Assinatura
-- Parâmetros e tipos
-- Retorno
-- Exceções
-- Exemplo de uso
-- Notas de compatibilidade
+- Name and description
+- Signature
+- Parameters and types
+- Return
+- Exceptions
+- Usage Example
+- Compatibility Notes
 
-Só documente classes e métodos que existem no código. Conteúdo planejado fica separado do estável.
+Only document classes and methods that exist in the code. Planned content should be kept separate from stable content.
