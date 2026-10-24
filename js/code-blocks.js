@@ -1,8 +1,15 @@
 export function highlight(s) {
   const e = s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
   return e.replace(
-    /(#.*$)|("[^"\n]*"|'[^'\n]*')|\b(import|from|def|async|await|class|return|if|else|for|in|as|with|None|True|False)\b/gm,
-    (x, c, st, k) => c ? `<span class=c>${c}</span>` : st ? `<span class=s>${st}</span>` : `<span class=k>${k}</span>`
+    /(#.*$)|("[^"\n]*"|'[^'\n]*')|(@[\w.]+)\b|(\b\w+)(?=\s*\()|\b(import|from|def|async|await|class|return|if|else|for|in|as|with|None|True|False)\b/gm,
+    (x, c, st, d, f, k) => {
+      if (c) return `<span class="c">${c}</span>`;       // Comentários
+      if (st) return `<span class="s">${st}</span>`;     // Strings
+      if (d) return `<span class="d">${d}</span>`;       // Decoradores (@decorador)
+      if (f) return `<span class="f">${f}</span>`;       // Funções (nome antes do parêntese)
+      if (k) return `<span class="k">${k}</span>`;       // Palavras-chave (def, import)
+      return x;
+    }
   );
 }
 
