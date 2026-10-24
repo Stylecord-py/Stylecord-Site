@@ -101,13 +101,16 @@ article blockquote.warn {
 }
 
 article img {
+  display: block;
   width: 100%;
+  height: auto;
   max-height: 350px;
   object-fit: cover;
   border-radius: 10px;
   border: 1px solid var(--line);
   margin: 18px 0;
 }
+
 
 .crumb {
   color: var(--g);
