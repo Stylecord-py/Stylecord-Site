@@ -4,11 +4,23 @@ const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
 
 const slug = s => s.toLowerCase().replace(/[^\w]+/g, '-').replace(/^-|-$/g, '');
 
-const inl = s => esc(s)
-  .replace(/`([^`]+)`/g, '<code>$1</code>')
-  .replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>')
-  .replace(/!\[([^\]]+)\]\(([^)]+)\)/g, '<img src="$2" alt="$1">') // Suporte a imagens em Markdown
-  .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+// Formatação inline: **negrito**, __negrito__, *itálico*, _itálico_, `código`, links e imagens.
+// Código, imagens e links são guardados antes para não serem alterados pelo negrito/itálico.
+const fmt = s => s
+  .replace(/\*\*(.+?)\*\*/g, '<b>$1</b>')
+  .replace(/(^|[^\w])__(.+?)__(?!\w)/g, '$1<b>$2</b>')
+  .replace(/\*([^*\s][^*]*?)\*/g, '<i>$1</i>')
+  .replace(/(^|[^\w])_([^_\s][^_]*?)_(?!\w)/g, '$1<i>$2</i>');
+
+const inl = s => {
+  const st = [];
+  const keep = h => `\u0000${st.push(h) - 1}\u0000`;
+  s = esc(s)
+    .replace(/`([^`]+)`/g, (_, c) => keep(`<code>${c}</code>`))
+    .replace(/!\[([^\]]+)\]\(([^)]+)\)/g, (_, a, u) => keep(`<img src="${u}" alt="${a}">`))
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, t, u) => keep(`<a href="${u}">`) + t + keep('</a>'));
+  return fmt(s).replace(/\u0000(\d+)\u0000/g, (_, n) => st[n]);
+};
 
 export function md(t) {
   const L = t.split('\n');
@@ -31,7 +43,7 @@ export function md(t) {
       continue;
     }
 
-    const h = l.match(/^(#{1,3}) (.+)/);
+    const h = l.match(/^(#{1,6}) (.+)/);
     if (h) {
       const id = slug(h[2]);
       const n = h[1].length;
@@ -60,8 +72,8 @@ export function md(t) {
     }
 
     if (l.trim()) {
-      const p = [];
-      while (i < L.length && L[i].trim() && !/^(#|```|>|- )/.test(L[i])) {
+      const p = [L[i++]]; // sempre consome a 1ª linha: evita loop infinito
+      while (i < L.length && L[i].trim() && !/^(#{1,6} |```|>|- )/.test(L[i])) {
         p.push(L[i++]);
       }
       o.push(`<p>${inl(p.join(' '))}</p>`);
