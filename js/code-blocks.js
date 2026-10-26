@@ -1,9 +1,24 @@
+const fstr = x => {
+  let out = '', txt = '';
+  const flush = () => {
+    if (txt) out += `<span class="s" translate="yes">${txt}</span>`;
+    txt = '';
+  };
+  for (const p of x.split(/(\{\{|\}\}|\{[^{}]*\})/)) {
+    if (p.length > 2 && p[0] === '{') { flush(); out += p; } // {expressão}: sem cor
+    else txt += p;                                           // texto, {{ e }}: cor da string
+  }
+  flush();
+  return out;
+};
+
 export function highlight(s) {
   const e = s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
   return e.replace(
-    /(#.*$)|("[^"\n]*"|'[^'\n]*')|(@[\w.]+)\b|(\b\w+)(?=\s*\()|\b(import|from|def|async|await|class|return|if|else|for|in|as|with|None|True|False)\b/gm,
-    (x, c, st, d, f, k) => {
+    /(#.*$)|((?<![\w"'])(?:[fF][rR]?|[rR][fF])(?:"[^"\n]*"|'[^'\n]*'))|("[^"\n]*"|'[^'\n]*')|(@[\w.]+)\b|(\b\w+)(?=\s*\()|\b(import|from|def|async|await|class|return|if|else|for|in|as|with|None|True|False)\b/gm,
+    (x, c, fs, st, d, f, k) => {
       if (c) return `<span class="c" translate="yes">${c}</span>`;       // Comentários (permite tradução)
+      if (fs) return fstr(fs);                                           // f-strings (chaves sem cor)
       if (st) return `<span class="s" translate="yes">${st}</span>`;     // Strings (permite tradução)
       if (d) return `<span class="d" translate="no">${d}</span>`;       // Decoradores (ignora)
       if (f) return `<span class="f" translate="no">${f}</span>`;       // Funções (ignora)

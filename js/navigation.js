@@ -1,5 +1,8 @@
 import { block } from './code-blocks.js';
 
+// Separador: ---, *** ou ___ (3 ou mais) sozinho na linha
+const HR = /^\s*([-*_])(\s*\1){2,}\s*$/;
+
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
 
 const slug = s => s.toLowerCase().replace(/[^\w]+/g, '-').replace(/^-|-$/g, '');
@@ -11,6 +14,13 @@ const fmt = s => s
   .replace(/(^|[^\w])__(.+?)__(?!\w)/g, '$1<b>$2</b>')
   .replace(/\*([^*\s][^*]*?)\*/g, '<i>$1</i>')
   .replace(/(^|[^\w])_([^_\s][^_]*?)_(?!\w)/g, '$1<i>$2</i>');
+
+// Texto puro (sem Markdown) para o índice lateral
+const plain = s => s
+  .replace(/!?\[([^\]]*)\]\([^)]*\)/g, '$1')
+  .replace(/[`*]/g, '')
+  .replace(/(^|\W)_+|_+(?=\W|$)/g, '$1')
+  .trim();
 
 const inl = s => {
   const st = [];
@@ -47,8 +57,14 @@ export function md(t) {
     if (h) {
       const id = slug(h[2]);
       const n = h[1].length;
-      if (n > 1) toc.push([id, h[2]]);
+      if (n === 2 || n === 3) toc.push([id, esc(plain(h[2]))]);
       o.push(`<h${n} id="${id}">${inl(h[2])}${n > 1 ? `<a class=hl href="#" data-a="${id}" aria-label="Direct link">#</a>` : ''}</h${n}>`);
+      i++;
+      continue;
+    }
+
+    if (HR.test(l)) {
+      o.push('<hr>');
       i++;
       continue;
     }
@@ -73,7 +89,7 @@ export function md(t) {
 
     if (l.trim()) {
       const p = [L[i++]]; // sempre consome a 1ª linha: evita loop infinito
-      while (i < L.length && L[i].trim() && !/^(#{1,6} |```|>|- )/.test(L[i])) {
+      while (i < L.length && L[i].trim() && !/^(#{1,6} |```|>|- )/.test(L[i]) && !HR.test(L[i])) {
         p.push(L[i++]);
       }
       o.push(`<p>${inl(p.join(' '))}</p>`);

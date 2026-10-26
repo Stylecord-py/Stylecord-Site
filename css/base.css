@@ -1,4 +1,4 @@
-@import url('https://googleapis.com');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
 
 :root {
   --b: #3776AB;
@@ -72,7 +72,7 @@ header.top .wrap {
 .logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0;
   font-weight: 700;
   color: #fff;
   text-decoration: none;
@@ -81,6 +81,7 @@ header.top .wrap {
 .logo img {
   width: 28px;
   height: 28px;
+  margin-right: 8px;
 }
 
 .logo b {

@@ -85,6 +85,17 @@ article pre code {
 
 article .code {
   margin: 18px 0;
+  max-width: 100%;
+}
+
+article p,
+article li,
+article blockquote,
+article h1,
+article h2,
+article h3,
+article h4 {
+  overflow-wrap: anywhere;
 }
 
 article blockquote {
@@ -104,8 +115,9 @@ article img {
   display: block;
   width: 100%;
   height: auto;
-  max-height: 350px;
-  object-fit: cover;
+  max-height: 480px;
+  object-fit: contain;
+  background: var(--sf);
   border-radius: 10px;
   border: 1px solid var(--line);
   margin: 18px 0;
@@ -165,11 +177,16 @@ h3:hover .hl {
 
 @media (max-width: 1000px) {
   .dl {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
   }
   
   #toc {
     display: none;
+  }
+
+  article {
+    max-width: none;
   }
   
   #side {
@@ -182,3 +199,5 @@ h3:hover .hl {
     display: block;
   }
 }
+
+#art hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
