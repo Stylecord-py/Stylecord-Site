@@ -7,16 +7,18 @@ const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
 
 const slug = s => s.toLowerCase().replace(/[^\w]+/g, '-').replace(/^-|-$/g, '');
 
-// Formatação inline: **negrito**, __negrito__, *itálico*, _itálico_, `código`, links e imagens.
+// Formatação inline: **negrito**, __sublinhado__, *itálico*, _itálico_, `código`, links e imagens.
+// Escape: \* \_ \` \# \[ ... anulam o Markdown, e \\ gera uma barra literal.
 // Código, imagens e links são guardados antes para não serem alterados pelo negrito/itálico.
 const fmt = s => s
   .replace(/\*\*(.+?)\*\*/g, '<b>$1</b>')
-  .replace(/(^|[^\w])__(.+?)__(?!\w)/g, '$1<b>$2</b>')
+  .replace(/(^|[^\w])__(.+?)__(?!\w)/g, '$1<u>$2</u>')
   .replace(/\*([^*\s][^*]*?)\*/g, '<i>$1</i>')
   .replace(/(^|[^\w])_([^_\s][^_]*?)_(?!\w)/g, '$1<i>$2</i>');
 
 // Texto puro (sem Markdown) para o índice lateral
 const plain = s => s
+  .replace(/\\([\\`*_{}\[\]()#+\-.!|~>])/g, '$1')
   .replace(/!?\[([^\]]*)\]\([^)]*\)/g, '$1')
   .replace(/[`*]/g, '')
   .replace(/(^|\W)_+|_+(?=\W|$)/g, '$1')
@@ -27,6 +29,7 @@ const inl = s => {
   const keep = h => `\u0000${st.push(h) - 1}\u0000`;
   s = esc(s)
     .replace(/`([^`]+)`/g, (_, c) => keep(`<code>${c}</code>`))
+    .replace(/\\([\\`*_{}\[\]()#+\-.!|~>])/g, (_, c) => keep(c))
     .replace(/!\[([^\]]+)\]\(([^)]+)\)/g, (_, a, u) => keep(`<img src="${u}" alt="${a}">`))
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, t, u) => keep(`<a href="${u}">`) + t + keep('</a>'));
   return fmt(s).replace(/\u0000(\d+)\u0000/g, (_, n) => st[n]);
