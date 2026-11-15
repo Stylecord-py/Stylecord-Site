@@ -3,7 +3,7 @@
 ---
 
 ## 1. Parameters
-### \_\_init\_\_ (Constructor)
+### 1.0 \_\_init\_\_ (Constructor)
 > Initializes the Intents instance either using a raw bitwise integer value or by specifying individual intent flags as boolean keyword arguments.
 - `Value` `(Type: Integer || Flag: Optional || Default: None)` -> A raw bitwise integer representing the combined intent flags.
 - `**Kwargs` `(Type: Boolean || Flag: Vacantable)` -> Individual intent names as keyword arguments (e.g., guilds=True, messages=False) to enable or disable specific flags dynamically.
@@ -14,7 +14,7 @@ import stylecord
 intents = stylecord.Intents(value=0, guilds=True, ...)
 ```
 
-### \_\_add\_\_ (Addition) -> `+`
+### 1.1 \_\_add\_\_ (Addition) -> `+`
 > Combines the intent flags of two instances. Internally, this delegates to the bitwise OR operation, providing a natural syntax for adding features.
 
 ```python
@@ -31,7 +31,7 @@ print("result: ", int(intents))
 result: 7
 ```
 
-### \_\_sub\_\_ (Subtraction) -> `-`
+### 1.2 \_\_sub\_\_ (Subtraction) -> `-`
 > Removes the intent flags present in the second instance from the first instance using bitwise negation.
 
 ```python
@@ -48,7 +48,7 @@ print("result: ", int(intents))
 result: 32255
 ```
 
-### \_\_or\_\_ (Bitwise OR) -> `|`
+### 1.3 \_\_or\_\_ (Bitwise OR) -> `|`
 > Performs the "OR" operation between the numeric values of two instances. If a bit is set in either of the two objects, it will remain set in the result.
 
 ```python
@@ -65,7 +65,7 @@ print("result: ", int(intents))
 result: 3
 ```
 
-### __and__ (Bitwise AND) -> `&`
+### 1.4 \_\_and\_\_ (Bitwise AND) -> `&`
 > Returns a new instance containing only the intent flags that are active in both instances simultaneously (intersection).
 
 ```python
@@ -82,7 +82,7 @@ print("result: ", int(intents))
 result: 512
 ```
 
-### \_\_int\_\_ (Method to Integers) -> `int()`
+### 1.5 \_\_int\_\_ (Method to Integers) -> `int()`
 > When converting an `Intents` class to an integer using the int() method, the result will be the value attribute.
 
 ```python
@@ -100,7 +100,7 @@ result: 53608447
 
 ## 2. Functions & Methods
 
-### all()
+### 2.0 all()
 > Class method that returns a new Intents instance with all available gateway intent flags enabled.
 
 ```python
@@ -109,7 +109,7 @@ import stylecord
 intents = stylecord.Intents.all()
 ```
 
-### none()
+### 2.1 none()
 > Class method that returns a new Intents instance with all gateway intent flags disabled (value equals 0).
 
 ```python
@@ -118,7 +118,7 @@ import stylecord
 intents = stylecord.Intents.none()
 ```
 
-### default()
+### 2.2 default()
 > Class method that returns a standard set of intents that do not require privileged gateway intents approval on the Discord Developer Portal.
 
 ```python
@@ -131,7 +131,7 @@ intents = stylecord.Intents.default()
 
 ## 3. Properties & Attributes
 
-### Attributes
+### 3.0 Attributes
 ```python
 value: int
 ```
@@ -142,7 +142,7 @@ value: int
 
 > Groups allow you to enable or disable multiple related intent flags simultaneously using a single keyword argument, simplifying configuration for common use cases.
 
-### Available Groups
+### 4.0 Available Groups
 - `guild` -> Enables or disables all server-related intents (e.g., guilds, members, moderation, emojis, integrations, webhooks, invites, voice states, and presences).
 - `messages` -> Enables or disables all message-related intents (guild messages, reactions, typing, and message content).
 - `direct` -> Enables or disables all direct message (DM) related intents (direct messages, reactions, and typing).
