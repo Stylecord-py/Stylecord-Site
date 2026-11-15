@@ -24,6 +24,11 @@
             "path": "development/contributing",
             "title": "Contributing",
             "section": "Development"
+        },
+        {
+            "path": "models/intents",
+            "title": "Intents",
+            "section": "Models"
         }
     ]
 }
