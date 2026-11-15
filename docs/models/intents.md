@@ -180,4 +180,4 @@ bot.run("<YOU TOKEN HERE>")
 ---
 
 ## 6. Look for
-- [Fhist bot](../getting-started/fhist-bot.md)
+- [Fhist bot](../docs/#/getting-started/first-bot)
